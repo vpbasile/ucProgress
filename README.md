@@ -1,3 +1,3 @@
-# ZZZ React + TypeScript + Vite + ChakraUI
+# UCProgress
 
-A blank project with all of that stuff
+A new approach to a task-management system 

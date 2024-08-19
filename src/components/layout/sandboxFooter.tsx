@@ -9,6 +9,6 @@ export default function Footer() {
             <Button leftIcon={<LinkIcon />}><Link isExternal href="https://chakra-ui-cheatsheet.vercel.app/">Cheat Sheet</Link></Button>
             <Button leftIcon={<LinkIcon />}><Link isExternal href="https://play.chakra-ui.com/playground">Playground</Link></Button>
         </ButtonGroup>
-        <Text>ZZZ Blank Project</Text>
+        <Text>UCProgress</Text>
     </Box>)
 }

@@ -1,7 +1,6 @@
-import { Routes, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Layout from "./components/layout";
-import Home from "./Homepage";
-import About from "./About";
+import UCProgress from "./UCProgress";
 
 function App() {
 
@@ -12,8 +11,8 @@ function App() {
 
     < Routes >
       <Route path='/' element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="about" element={<About />} />
+        <Route index element={<UCProgress />} />
+        {/* <Route path="about" element={<About />} /> */}
       </Route>
     </Routes >
   )
