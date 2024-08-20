@@ -13,7 +13,7 @@ export type linkType = {
     text: string;
 }
 
-export type taskType = {
+export type Ttask = {
     uid: number;
     description: string;
     loe: string;

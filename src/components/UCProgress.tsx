@@ -1,7 +1,9 @@
-import { Box, Button } from '@chakra-ui/react';
+import { Box, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, FormLabel, Heading, Input, Textarea } from '@chakra-ui/react';
 import { useState } from 'react';
-import { taskType } from '../types';
+import { Ttask } from '../types';
 import DisplayTasks from './DisplayTasks';
+import PickGroup from './FormPickGroup';
+import PickStatus from './FormPickStatus';
 
 export default function UCProgress() {
 
@@ -36,7 +38,8 @@ export default function UCProgress() {
     // ---------------------------------------------
     let makeUID = 0;
 
-    const examples: taskType[] = [
+    const examples: Ttask[] = [
+        // { uid: -1, description: "Blank test", loe: "", status: "Potential Risks", completionDate: "", comments: "Lorem ipsum dolor sit amet.", nextSteps: "", group: "Next" },
         {
             uid: makeUID++, description: "Connected Care Alert", loe: "", status: "On Track", completionDate: "", comments: "", nextSteps: "", group: "Focus", links: [
                 { url: "https://ucdh.service-now.com/now/nav/ui/classic/params/target/sc_request.do%3Fsys_id%3Da404593f1b9471d0ac8086e3604bcb76%26sysparm_stack%3D%26sysparm_view%3D", text: "ServiceNow" },
@@ -64,6 +67,13 @@ export default function UCProgress() {
 
     //  TODO Implement Redux or Context API
     const [taskData] = useState(examples);
+    const [editTaskID, setEditTaskID] = useState(-1);
+    const isEditing = editTaskID != -1;
+    // const { isOpen, onOpen, onClose } = useDisclosure()
+    const clearEditTaskID = () => setEditTaskID(-1);
+    const task = taskData.find(task => task.uid === editTaskID) || examples[0];
+
+
     const views = ["Focus", "Progress Report"];
     const [view, setView] = useState(views[0]);
 
@@ -74,6 +84,37 @@ export default function UCProgress() {
             const currentIndex = views.indexOf(view);
             setView(views[((currentIndex + 1) % views.length)]);
         }}>{view}</Button>
-        <DisplayTasks taskArray={taskData} viewMode={view} />
+        <DisplayTasks taskArray={taskData} viewMode={view} setEditTaskID={setEditTaskID} />
+        <Drawer isOpen={isEditing} placement='left' onClose={clearEditTaskID} size={'xl'}>
+            <DrawerOverlay />
+            <DrawerContent>
+                {/* <DrawerCloseButton /> */}
+                <DrawerHeader>
+                    <Heading as={'h2'}>Edit</Heading>
+                    <Button colorScheme='red' onClick={clearEditTaskID}>Cancel</Button>
+                </DrawerHeader>
+
+                <DrawerBody>
+                    <FormLabel htmlFor='editDescription'>Description</FormLabel>
+                    <Input id='editDescription' defaultValue={task.description} />
+                    <FormLabel htmlFor='editLOE'>LOE</FormLabel>
+                    <Input id='editLOE' defaultValue={task.loe} />
+                    <FormLabel>Status</FormLabel>
+                    <PickStatus selectedValue={task.status} />
+                    <FormLabel htmlFor='editCompletionDate'>Completion Date</FormLabel>
+                    <Input id='editCompletionDate' defaultValue={task.completionDate} />
+                    <FormLabel htmlFor='editComments'>Comments</FormLabel>
+                    <Textarea id='editComments' defaultValue={task.comments} />
+                    <FormLabel htmlFor='editNextSteps'>Next Steps</FormLabel>
+                    <Textarea id='editNextSteps' defaultValue={task.nextSteps} />
+                    <FormLabel htmlFor='editGroup'>Group</FormLabel>
+                    <PickGroup selectedValue={task.group} />
+                </DrawerBody>
+
+                <DrawerFooter>
+                    <Button colorScheme='green' onClick={clearEditTaskID}>Save & Close</Button>
+                </DrawerFooter>
+            </DrawerContent>
+        </Drawer>
     </Box>
 }

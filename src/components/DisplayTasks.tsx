@@ -1,8 +1,8 @@
 import { EditIcon } from "@chakra-ui/icons";
 import { Link, List, ListItem, Select, Table, TableContainer, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
-import { listGroup, listStatus, taskType, Tgroup, Tstatus } from "../types";
+import { listGroup, listStatus, Tgroup, Tstatus, Ttask } from "../types";
 
-export default function DisplayTasks(props: { taskArray: taskType[], viewMode: string }) {
+export default function DisplayTasks(props: { taskArray: Ttask[], viewMode: string, setEditTaskID: (id: number) => void }) {
     // Cache
     const { taskArray, viewMode } = props;
     const showThem = viewMode != "Progress Report";
@@ -35,7 +35,7 @@ export default function DisplayTasks(props: { taskArray: taskType[], viewMode: s
                 </Tr>
             </Thead>
             <Tbody>
-                {taskArray.map(task => ((task: taskType) => {
+                {taskArray.map(task => ((task: Ttask) => {
                     const { description, loe, status, completionDate, comments, nextSteps, group, links } = task;
                     let rowColor = "";
                     // Skip the switch if we're in progress report mode
@@ -57,7 +57,10 @@ export default function DisplayTasks(props: { taskArray: taskType[], viewMode: s
                         default: break;
                     }
                     const uid = task.uid;
-                    const editTask = () => { console.log("Edit task " + uid) };
+                    const editTask = () => {
+                        console.log("Edit task " + uid)
+                        props.setEditTaskID(uid)
+                    };
                     return <Tr key={'row' + uid} backgroundColor={rowColor} whiteSpace={"normal"}>
                         {showThem && <Td><EditIcon onClick={editTask} /></Td>}
                         <Td minHeight={'30em'}>{description}
