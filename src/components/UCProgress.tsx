@@ -1,10 +1,26 @@
+import { Box, Button } from '@chakra-ui/react';
 import { useState } from 'react';
+import { taskType } from '../types';
 import DisplayTasks from './DisplayTasks';
-import { taskType } from './types';
 
 export default function UCProgress() {
 
     // TODO
+
+    // Import and export data
+    // ---------------------------------------------
+
+    // // Import data from a file
+    // function importData() {
+    //     // TODO
+    // }
+    // // Export data to a file
+    // function exportData() {
+    //     // TODO
+    // }
+
+    // <><> State management
+    // ---------------------------------------------
     // Choose status from a list.
     // Choose grouping from a list.
     // Remember and change sort
@@ -40,13 +56,24 @@ export default function UCProgress() {
         { uid: makeUID++, description: "Logistics tasks grouping/stacking mystery", loe: "", status: "On Track", completionDate: "", comments: "Asked the users if they want to change the settings.", nextSteps: "", group: "Waiting" },
         { uid: makeUID++, description: "Knowledge Management", loe: "", status: "On Track", completionDate: "", comments: "Started collecting topics, signed up for the training", nextSteps: "", group: "Waiting" },
         {
-            uid: makeUID++, description: "Other Payer Alerts in response history", loe: "", status: "Potential Risks", completionDate: "", comments: "Alert when 'other payor' information is found in the EB*R segment from Blue Cross.  Having trouble determining why the alert is not consistently appearing.", nextSteps: "", group: "Then", links: [
+            uid: makeUID++, description: "Other Payer Alerts in response history", loe: "", status: "Risks / Roadblock", completionDate: "", comments: "Alert when 'other payor' information is found in the EB*R segment from Blue Cross.  Having trouble determining why the alert is not consistently appearing.", nextSteps: "", group: "Then", links: [
                 { url: "https://ucdh.service-now.com/now/nav/ui/classic/params/target/sc_request.do%3Fsys_id%3D9537337e1b990e18ac8086e3604bcb2e%26sysparm_record_target%3Dtask%26sysparm_record_row%3D5%26sysparm_record_rows%3D15%26sysparm_record_list%3Dassigned_toDYNAMIC90d1921e5f510100a9ad2572f2b477fe%255Eactive%253Dtrue%255EstateIN-5%252C1%252C9%252C2%252C-4%252C-3%252C-2%252C-1%252C5%252C10%252C6%252C-6%252C12%252C11%252C-7%252C-8%255EORref_incident.hold_reasonIN1%252C3%252C4%252C5%255Eref_incident.resolved_atISEMPTY%255EORDERBYnumber", text: "ServiceNow" }
             ]
         },
     ]
 
-    const [taskData, setTaskData] = useState(examples);
+    //  TODO Implement Redux or Context API
+    const [taskData] = useState(examples);
+    const views = ["Focus", "Progress Report"];
+    const [view, setView] = useState(views[0]);
 
-    return <DisplayTasks taskArray={taskData} />
+
+    return <Box>
+        <Button onClick={() => {
+            // Cycle through the views
+            const currentIndex = views.indexOf(view);
+            setView(views[((currentIndex + 1) % views.length)]);
+        }}>{view}</Button>
+        <DisplayTasks taskArray={taskData} viewMode={view} />
+    </Box>
 }

@@ -1,5 +1,4 @@
 import { Flex, Heading, Link, VStack } from "@chakra-ui/react";
-import ColorModeButton from "../colorModeButton";
 
 export default function Header() {
     
@@ -17,7 +16,7 @@ export default function Header() {
     return (<Flex id="header" borderBottom={`2px`} marginBottom={'xl'}>
         <VStack>
             <Heading flex={3} as={'h1'}><Link href="/">UCProgress</Link></Heading>
-            <ColorModeButton />
+            {/* <ColorModeButton /> */}
         </VStack>
     </Flex >)
 }

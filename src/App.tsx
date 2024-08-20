@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/layout";
-import UCProgress from "./UCProgress";
+import UCProgress from "./components/UCProgress";
 
 function App() {
 
