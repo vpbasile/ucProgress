@@ -1,6 +1,6 @@
 import { EditIcon } from "@chakra-ui/icons";
 import { Link, List, ListItem, Select, Table, TableContainer, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
-import { listGroup, listStatus, Tgroup, Tstatus, Ttask } from "../types";
+import { listGroup, listStatus, Tgroup, Tstatus, Ttask } from "../../types";
 
 export default function DisplayTasks(props: { taskArray: Ttask[], viewMode: string, setEditTaskID: (id: number) => void }) {
     // Cache

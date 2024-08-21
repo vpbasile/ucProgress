@@ -1,5 +1,5 @@
 import { Select } from "@chakra-ui/react"
-import { Tstatus, listStatus } from "../types"
+import { Tstatus, listStatus } from "../../types"
 
 export default function PickStatus(props: { selectedValue: Tstatus }) {
     const { selectedValue } = props

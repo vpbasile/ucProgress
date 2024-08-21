@@ -3,6 +3,7 @@
 export const listStatus = ["Risks / Roadblock", "Potential Risks", "On Track", "N/A"]
 export const listGroup = ["Focus", "Support", "Next", "Waiting", "Then", "Done"]
 
+// FIXME These don't work.  They just = string
 export type Tstatus = typeof listStatus[number]
 export type Tgroup = typeof listGroup[number]
 

@@ -1,5 +1,5 @@
 import { Select } from "@chakra-ui/react";
-import { Tgroup, listGroup } from "../types";
+import { Tgroup, listGroup } from "../../types";
 
 export default function PickGroup(props: { selectedValue: Tgroup }) {
     const { selectedValue } = props;
