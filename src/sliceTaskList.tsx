@@ -38,8 +38,22 @@ export const addTask = (task: Ttask) => ({
     payload: task,
 })
 // <><> The updateStatus action will be used to update the status of a task. It is called by the Select component on the edit form and on the focus view.
+export const updateStatus = (uid: number, status: string) => ({
+    type: 'UPDATE_STATUS',
+    payload: { uid, status },
+})
+
 // <><> The updateGroup action will be used to update the group of a task.  It is called by the Select component on the edit form and on the focus view.
+export const updateGroup = (uid: number, group: string) => ({
+    type: 'UPDATE_GROUP',
+    payload: { uid, group },
+})
+
 // <><> The removeTask action will be used to remove a task from the list.  It is called from the edit form.
+export const removeTask = (uid: number) => ({
+    type: 'REMOVE_TASK',
+    payload: uid,
+})
 
 // <><> Using createSLice (which uses Immer) means that we can write code that would mutate the state, but Immer will take care of creating a new state object for us.
 // ---------------------------------------------
