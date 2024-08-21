@@ -1,7 +1,7 @@
 import { Button, Drawer, DrawerBody, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, FormLabel, Heading, Input, Textarea } from '@chakra-ui/react';
-import PickGroup from './features/tasks/FormPickGroup';
-import PickStatus from './features/tasks/FormPickStatus';
-import { Ttask } from './types';
+import { Ttask } from '../../types';
+import PickGroup from './FormPickGroup';
+import PickStatus from './FormPickStatus';
 export default function DisplayFormEdit(props: { isEditing: boolean, clearEditTaskID: () => void, task: Ttask }) {
     const { isEditing, clearEditTaskID, task } = props;
     return <Drawer isOpen={isEditing} placement='left' onClose={clearEditTaskID} size={'xl'}>

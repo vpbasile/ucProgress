@@ -1,8 +1,8 @@
 import { Box, Button, ButtonGroup } from '@chakra-ui/react';
 import { useState } from 'react';
 import { RootState, useAppDispatch, useAppSelector } from '../../appStore';
-import DisplayFormEdit from '../../DisplayFormEdit';
 import { Ttask } from '../../types';
+import DisplayFormEdit from './DisplayFormEdit';
 import DisplayTasks from './DisplayTasks';
 
 export default function UCProgress() {
