@@ -37,9 +37,9 @@ export const addTask = (task: Ttask) => ({
     type: 'ADD_TASK',
     payload: task,
 })
-// <><> The removeTask action will be used to remove a task from the list.
-// <><> Both actions will be used in the reducer function to update the state.
-
+// <><> The updateStatus action will be used to update the status of a task. It is called by the Select component on the edit form and on the focus view.
+// <><> The updateGroup action will be used to update the group of a task.  It is called by the Select component on the edit form and on the focus view.
+// <><> The removeTask action will be used to remove a task from the list.  It is called from the edit form.
 
 // <><> Using createSLice (which uses Immer) means that we can write code that would mutate the state, but Immer will take care of creating a new state object for us.
 // ---------------------------------------------
