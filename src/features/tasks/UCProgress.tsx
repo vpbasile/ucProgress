@@ -23,19 +23,16 @@ export default function UCProgress() {
 
     // <><> State management
     // ---------------------------------------------
-    // Choose status from a list.
-    // Choose grouping from a list.
     // Remember and change sort
     // Add multiple links to each task
     // // Button, form to add link
     // // Button to remove link
-    // Add a new task
-    // // Button, form to add task
     // // Button to remove task
+    // Handle Next Steps as a discrete list
 
 
     // Placeholder
-    const dummyTask: Ttask = { uid: -1, description: "", loe: "", status: "", completionDate: "", comments: "", nextSteps: "", group: "" };
+    const dummyTask: Ttask = { uid: -1, description: "Description", loe: "", status: "N/A", completionDate: "", comments: "", nextSteps: "", group: "Focus" };
 
 
     //  Redux state management
@@ -60,9 +57,10 @@ export default function UCProgress() {
             {/* New Task button that calls the dispatch */}
             <Button onClick={() => {
                 console.log("Add button clicked");
-                dispatch({ type: "taskList/addTask", payload: dummyTask });
-                // TODO Figure out the UID and set it to the editTaskID
-                setEditTaskID(taskData[taskData.length - 1].uid);
+                const index = taskData.length;
+                dispatch({ type: "taskList/addTask", payload: { ...dummyTask, uid: index } })
+                // TODO Select the new task for editing.  This isn't working.
+                // setEditTaskID(taskData[index].uid);
             }}>New Task</Button>
         </ButtonGroup>
         <DisplayTasks taskArray={taskData} viewMode={view} setEditTaskID={setEditTaskID} />

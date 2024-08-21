@@ -9,7 +9,7 @@ export default function DisplayFormEdit(props: { isEditing: boolean, clearEditTa
         <DrawerContent>
             {/* <DrawerCloseButton /> */}
             <DrawerHeader>
-                <Heading as={'h2'}>Edit</Heading>
+                <Heading as={'h2'}>Edit task {task.uid}</Heading>
                 <Button colorScheme='red' onClick={clearEditTaskID}>Cancel</Button>
             </DrawerHeader>
 

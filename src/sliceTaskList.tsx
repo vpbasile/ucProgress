@@ -48,8 +48,10 @@ export const sliceTaskList = createSlice({
     initialState: initialState,
     reducers: {
         addTask: (state, action: PayloadAction<Ttask>) => {
-            console.log("Adding task", action.payload);
-            state.push(action.payload);
+            const payload = action.payload;
+            console.log("Adding task", payload.uid);
+            state.push(payload);
+            return state;
         },
         removeTask: (state, action: PayloadAction<number>) => {
             return state.filter(task => task.uid !== action.payload);
