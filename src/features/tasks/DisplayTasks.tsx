@@ -70,7 +70,7 @@ export default function DisplayTasks(props: { taskArray: Ttask[], viewMode: stri
                             </List>}
                         </Td>
                         <Td>{loe}</Td>
-                        <Td backgroundColor={statusColor}>{pickStatus(status)}</Td>
+                        {showThem ? <Td backgroundColor={statusColor}>{pickStatus(status)}</Td> : <Td backgroundColor={statusColor}>{status}</Td>}
                         <Td>{completionDate}</Td>
                         <Td maxW={'md'}>{comments}</Td>
 
